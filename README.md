@@ -54,6 +54,8 @@ php examples/v3/send.php
 
 ## کدام متد را انتخاب کنم
 
+<div dir="rtl">
+
 | اگر… | این متد |
 |---|---|
 | فقط می‌خواهید سریع یک پیامک بفرستید | `Send` |
@@ -62,12 +64,16 @@ php examples/v3/send.php
 | رمز یک‌بارمصرف یا هر قالب تأییدشده | `SendTokenSingle` |
 | یک قالب برای چند نفر با مقادیر متفاوت | `SendTokenMulti` |
 
+</div>
+
 برای ارسال عملیاتی `SendBulk` بهترین انتخاب است: کلید را از نشانی بیرون
 می‌برد و برای هر گیرنده شناسهٔ پی‌گیری اختصاصی می‌پذیرد.
 
 ---
 
 ## متدها
+
+<div dir="rtl">
 
 | نمونه | متد سرویس | کار |
 |---|---|---|
@@ -82,6 +88,8 @@ php examples/v3/send.php
 | [status-by-id.php](examples/v3/status-by-id.php) | `StatusById` | وضعیت با شناسهٔ سامانه |
 | [status-by-user-trace-id.php](examples/v3/status-by-user-trace-id.php) | `StatusByUserTraceId` | وضعیت با شناسهٔ خودتان |
 | [get-inbox.php](examples/v3/get-inbox.php) | `GetInbox` | پیامک‌های رسیده به خطوط شما |
+
+</div>
 
 ---
 
@@ -119,7 +127,7 @@ if (! $response['Success']) {
 }
 ```
 
-`pr_config()` خودش `.env` را می‌خواند، پس فقط باید `.env` کنار پوشهٔ کپی‌شده
+تابع `pr_config()` خودش `.env` را می‌خواند، پس فقط باید `.env` کنار پوشهٔ کپی‌شده
 باشد یا متغیرها را در محیط سرور تعریف کنید.
 
 ### ۲. فقط شکل درخواست را بردارید
@@ -194,6 +202,8 @@ if (! $body['Success']) {
 
 ## ساختار
 
+<div dir="rtl">
+
 | مسیر | چیست |
 |---|---|
 | `examples/v3/` | یک نمونه به‌ازای هر عملیات سرویس |
@@ -201,14 +211,16 @@ if (! $body['Success']) {
 | `config/` | خواندن پیکربندی از محیط |
 | `.env.example` | نمونهٔ متغیرهای محیطی |
 
-`v3` در مسیر عمدی است تا نسخه‌های بعدی سرویس کنار همین بنشینند.
+</div>
+
+بخش `v3` در مسیر عمدی است تا نسخه‌های بعدی سرویس کنار همین بنشینند.
 
 ---
 
 ## مستندات و پشتیبانی
 
 - [مستندات پیام رسان](https://docs.payam-resan.com)
-- [Swagger وب‌سرویس](https://api.sms-webservice.com/swagger/ui/index)
+- [مرجع Swagger وب‌سرویس](https://api.sms-webservice.com/swagger/ui/index)
 - سؤال یا خطا؟ [issue باز کنید](https://github.com/payam-resan/php-sms-webservice/issues)
   یا با [پشتیبانی](https://payam-resan.com) تماس بگیرید.
 
