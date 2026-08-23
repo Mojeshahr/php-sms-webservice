@@ -1,12 +1,12 @@
 <div align="center">
 
 <a href="https://payam-resan.com">
-  <img src=".github/assets/logo.svg" width="64" height="64" alt="پیام‌رسان">
+  <img src=".github/assets/logo.svg" width="64" height="64" alt="پیام رسان">
 </a>
 
-<h1>نمونه‌کدهای PHP وب‌سرویس پیام‌رسان</h1>
+<h1>نمونه‌کدهای PHP وب‌سرویس پیام رسان</h1>
 
-اتصال به وب‌سرویس پیامکی <a href="https://payam-resan.com"><b>پیام‌رسان</b></a> با PHP<br>
+اتصال به وب‌سرویس <a href="https://payam-resan.com"><b>پنل پیامکی پیام رسان</b></a> با PHP<br>
 یک فایل قابل اجرا به‌ازای هر متد سرویس، بدون هیچ وابستگی
 
 [![API](https://img.shields.io/badge/API-V3-0a7cbd)](https://payam-resan.com)
@@ -207,7 +207,7 @@ if (! $body['Success']) {
 
 ## مستندات و پشتیبانی
 
-- [مستندات پیام‌رسان](https://docs.payam-resan.com)
+- [مستندات پیام رسان](https://docs.payam-resan.com)
 - [Swagger وب‌سرویس](https://api.sms-webservice.com/swagger/ui/index)
 - سؤال یا خطا؟ [issue باز کنید](https://github.com/payam-resan/php-sms-webservice/issues)
   یا با [پشتیبانی](https://payam-resan.com) تماس بگیرید.
@@ -222,6 +222,6 @@ if (! $body['Success']) {
     <a href="https://payam-resan.com">
       <img src=".github/assets/logo.svg" width="20" height="20" alt="" align="top">
     </a>
-    &nbsp;<a href="https://payam-resan.com"><b>پیام‌رسان</b></a> · سامانهٔ پیامکی از سال ۱۳۸۷
+    &nbsp;<b>پنل پیامکی پیام رسان</b> · <a href="https://payam-resan.com">payam-resan.com</a>
   </sub>
 </div>
