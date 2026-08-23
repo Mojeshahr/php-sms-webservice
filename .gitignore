@@ -1,0 +1,7 @@
+# کلید API اینجاست. هرگز کامیت نشود.
+.env
+
+vendor/
+.DS_Store
+.idea/
+.vscode/
