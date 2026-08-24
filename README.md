@@ -17,14 +17,14 @@
 </div>
 
 <sub>دنبال زبان دیگری هستید؟ همین نمونه‌ها برای زبان‌های دیگر هم در
-[github.com/payam-resan](https://github.com/payam-resan) هست.</sub>
+[github.com/Mojeshahr](https://github.com/Mojeshahr) هست.</sub>
 
 ---
 
 ## شروع سریع
 
 ```bash
-git clone https://github.com/payam-resan/php-sms-webservice.git
+git clone https://github.com/Mojeshahr/php-sms-webservice.git
 cd php-sms-webservice
 cp .env.example .env
 ```
@@ -221,7 +221,7 @@ if (! $body['Success']) {
 
 - [مستندات پیام رسان](https://docs.payam-resan.com)
 - [مرجع Swagger وب‌سرویس](https://api.sms-webservice.com/swagger/ui/index)
-- سؤال یا خطا؟ [issue باز کنید](https://github.com/payam-resan/php-sms-webservice/issues)
+- سؤال یا خطا؟ [issue باز کنید](https://github.com/Mojeshahr/php-sms-webservice/issues)
   یا با [پشتیبانی](https://payam-resan.com) تماس بگیرید.
 
 ## مجوز
@@ -231,9 +231,17 @@ if (! $body['Success']) {
 <br>
 <div align="center">
   <sub>
-    <a href="https://payam-resan.com">
-      <img src=".github/assets/logo.svg" width="20" height="20" alt="" align="top">
-    </a>
-    &nbsp;<b>پنل پیامکی پیام رسان</b> · <a href="https://payam-resan.com">payam-resan.com</a>
+    <img src=".github/assets/logo.svg" width="16" height="16" alt="" align="top">
+    &nbsp;<b>پنل پیامکی پیام رسان - موج شهر</b>&nbsp;
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset=".github/assets/mojeshahr-dark.svg">
+      <img src=".github/assets/mojeshahr-light.svg" width="16" height="16" alt="" align="top">
+    </picture>
+  </sub>
+  <br>
+  <sub>
+    <a href="https://payam-resan.com">payam-resan.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://mojeshahr.ir">mojeshahr.ir</a>
   </sub>
 </div>
