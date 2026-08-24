@@ -14,6 +14,8 @@
 [![Dependencies](https://img.shields.io/badge/dependencies-none-2ea44f)](#شروع-سریع)
 [![License](https://img.shields.io/badge/license-MIT-6e7781)](LICENSE)
 
+<b>فارسی</b> · <a href="README.en.md">English</a>
+
 </div>
 
 <sub>دنبال زبان دیگری هستید؟ همین نمونه‌ها برای زبان‌های دیگر هم در
