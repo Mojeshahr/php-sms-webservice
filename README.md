@@ -50,7 +50,7 @@ php examples/v3/account-info.php
 php examples/v3/send.php
 ```
 
-**نیازمندی:** PHP نسخهٔ ۷.۴ یا بالاتر با افزونهٔ cURL. هیچ وابستگی دیگری ندارد.
+**نیازمندی:** PHP نسخه ۷.۴ یا بالاتر با افزونه cURL. هیچ وابستگی دیگری ندارد.
 
 ---
 
@@ -69,7 +69,7 @@ php examples/v3/send.php
 </div>
 
 برای ارسال عملیاتی `SendBulk` بهترین انتخاب است: کلید را از نشانی بیرون
-می‌برد و برای هر گیرنده شناسهٔ پی‌گیری اختصاصی می‌پذیرد.
+می‌برد و برای هر گیرنده شناسه پی‌گیری اختصاصی می‌پذیرد.
 
 ---
 
@@ -81,23 +81,23 @@ php examples/v3/send.php
 |---|---|---|
 | [account-info.php](examples/v3/account-info.php) | `AccountInfo` | اعتبار و خطوط فعال |
 | [send.php](examples/v3/send.php) | `Send` | یک متن به یک یا چند شماره، با GET |
-| [send-bulk.php](examples/v3/send-bulk.php) | `SendBulk` | یک متن به چند گیرنده، با شناسهٔ پی‌گیری |
+| [send-bulk.php](examples/v3/send-bulk.php) | `SendBulk` | یک متن به چند گیرنده، با شناسه پی‌گیری |
 | [send-multiple.php](examples/v3/send-multiple.php) | `SendMultiple` | متن متفاوت برای هر گیرنده |
 | [send-token-single.php](examples/v3/send-token-single.php) | `SendTokenSingle` | ارسال قالب به یک شماره |
 | [send-token-single-get.php](examples/v3/send-token-single-get.php) | `SendTokenSingle` | همان، با GET |
 | [send-token-multi.php](examples/v3/send-token-multi.php) | `SendTokenMulti` | یک قالب، چند گیرنده |
 | [token-list.php](examples/v3/token-list.php) | `TokenList` | فهرست قالب‌ها و وضعیت تأییدشان |
-| [status-by-id.php](examples/v3/status-by-id.php) | `StatusById` | وضعیت با شناسهٔ سامانه |
-| [status-by-user-trace-id.php](examples/v3/status-by-user-trace-id.php) | `StatusByUserTraceId` | وضعیت با شناسهٔ خودتان |
+| [status-by-id.php](examples/v3/status-by-id.php) | `StatusById` | وضعیت با شناسه سامانه |
+| [status-by-user-trace-id.php](examples/v3/status-by-user-trace-id.php) | `StatusByUserTraceId` | وضعیت با شناسه خودتان |
 | [get-inbox.php](examples/v3/get-inbox.php) | `GetInbox` | پیامک‌های رسیده به خطوط شما |
 
 </div>
 
 ---
 
-## استفاده در پروژهٔ خودتان
+## استفاده در پروژه خودتان
 
-این مخزن یک بستهٔ composer نیست و قرار نیست باشد. سه راه دارید.
+این مخزن یک بسته composer نیست و قرار نیست باشد. سه راه دارید.
 
 ### ۱. دو پوشه را بردارید
 
@@ -129,12 +129,12 @@ if (! $response['Success']) {
 }
 ```
 
-تابع `pr_config()` خودش `.env` را می‌خواند، پس فقط باید `.env` کنار پوشهٔ کپی‌شده
+تابع `pr_config()` خودش `.env` را می‌خواند، پس فقط باید `.env` کنار پوشه کپی‌شده
 باشد یا متغیرها را در محیط سرور تعریف کنید.
 
 ### ۲. فقط شکل درخواست را بردارید
 
-اگر در پروژه‌تان کلاینت HTTP دارید، `utils/` را نبرید. از هر نمونه فقط بدنهٔ
+اگر در پروژه‌تان کلاینت HTTP دارید، `utils/` را نبرید. از هر نمونه فقط بدنه
 درخواست و بررسی پاسخ را بردارید:
 
 ```php
@@ -162,7 +162,7 @@ if (! $body['Success']) {
 
 ### ۳. صبر کنید
 
-یک بستهٔ نصب‌شدنی با composer در برنامه هست و در مخزن جداگانه‌ای منتشر
+یک بسته نصب‌شدنی با composer در برنامه هست و در مخزن جداگانه‌ای منتشر
 می‌شود. تا آن موقع، دو راه بالا کار را راه می‌اندازند.
 
 ---
@@ -179,7 +179,7 @@ if (! $body['Success']) {
 > انجام می‌دهد؛ اگر پیش از آن هم `urlencode()` بزنید، گیرنده به‌جای متن فارسی
 > `%D8%A7%D8%B3%D8%AA` می‌بیند.
 
-**شمارهٔ گیرنده بدون صفر ابتدایی.** `9121112222` یا با کد کشور
+**شماره گیرنده بدون صفر ابتدایی.** `9121112222` یا با کد کشور
 `989121112222`. حداکثر ۹۹ گیرنده در هر درخواست.
 
 **وضعیت پیامک بلافاصله نهایی نیست.** از `0` (در صف سامانه) شروع می‌شود و تا
@@ -197,7 +197,7 @@ if (! $body['Success']) {
 - در کد ننویسیدش. در `.env` بگذارید که در `.gitignore` هست.
 - در جاوااسکریپت سمت مرورگر یا در اپلیکیشن موبایل کامپایل‌شده نگذاریدش.
 - برای ارسال، متدهای `POST` را ترجیح بدهید. در `GET` کلید داخل نشانی می‌رود و
-  در لاگ وب‌سرور، تاریخچهٔ مرورگر و هدر `Referer` ثبت می‌شود.
+  در لاگ وب‌سرور، تاریخچه مرورگر و هدر `Referer` ثبت می‌شود.
 - اگر جایی لو رفت، از پنل باطلش کنید و کلید تازه بگیرید.
 
 ---
@@ -209,9 +209,9 @@ if (! $body['Success']) {
 | مسیر | چیست |
 |---|---|
 | `examples/v3/` | یک نمونه به‌ازای هر عملیات سرویس |
-| `utils/` | لایهٔ cURL و جدول کدها، تا در هر نمونه تکرار نشوند |
+| `utils/` | لایه cURL و جدول کدها، تا در هر نمونه تکرار نشوند |
 | `config/` | خواندن پیکربندی از محیط |
-| `.env.example` | نمونهٔ متغیرهای محیطی |
+| `.env.example` | نمونه متغیرهای محیطی |
 
 </div>
 

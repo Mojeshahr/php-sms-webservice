@@ -1,9 +1,9 @@
 <?php
 /**
- * لایهٔ ارتباطی مشترک همهٔ نمونه‌ها.
+ * لایه ارتباطی مشترک همه نمونه‌ها.
  *
  * این یک کتابخانه نیست و قرار نیست باشد؛ فقط همان چند خط cURL است که
- * وگرنه باید در هر نمونه تکرار می‌شد. اگر در پروژهٔ خودتان کلاینت HTTP
+ * وگرنه باید در هر نمونه تکرار می‌شد. اگر در پروژه خودتان کلاینت HTTP
  * دارید (Guzzle، Symfony HttpClient، …) همان را به کار ببرید و از اینجا
  * فقط شکل درخواست و پاسخ را بردارید.
  *
@@ -66,7 +66,7 @@ function pr_get(string $method, array $query): array
 }
 
 /**
- * فراخوانی یک متد POST با بدنهٔ JSON.
+ * فراخوانی یک متد POST با بدنه JSON.
  */
 function pr_post(string $method, array $body): array
 {
@@ -140,7 +140,7 @@ function pr_request(string $method, string $url, ?string $jsonBody): array
 /**
  * پاسخ را خوانا چاپ می‌کند. فقط برای همین نمونه‌ها.
  *
- * نکتهٔ مهمی که نشان می‌دهد: موفقیت را باید از فیلد Success خواند. سرویس
+ * نکته مهمی که نشان می‌دهد: موفقیت را باید از فیلد Success خواند. سرویس
  * حتی وقتی درخواست ناموفق است هم کد HTTP 200 برمی‌گرداند.
  */
 function pr_show(array $response): void
@@ -149,7 +149,7 @@ function pr_show(array $response): void
         $code = (int) ($response['ErrorCode'] ?? 0);
         $message = $response['Error'] ?? 'بدون شرح';
 
-        echo "ناموفق. کد خطا $code — $message\n";
+        echo "ناموفق. کد خطا $code - $message\n";
 
         // چیزی که سرویس نمی‌گوید و برنامه لازم دارد: تکرار همین درخواست
         // می‌تواند جواب بدهد یا نه.
