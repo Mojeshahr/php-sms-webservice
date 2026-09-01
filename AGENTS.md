@@ -1,61 +1,71 @@
-# راهنمای عامل‌ها
+# Agent guide
 
-این مخزن **نمونه‌کد** است، نه کتابخانه. هدفش این است که یک توسعه‌دهندهٔ PHP
-در چند دقیقه به وب‌سرویس پنل پیامکی پیام رسان وصل شود. هر تصمیمی که این را سخت‌تر کند،
-تصمیم غلطی است، حتی اگر مهندسی‌تر باشد.
+This repository is **example code**, not a library. Its job is to get a PHP
+developer talking to the Payam Resan SMS web service within a few minutes. Any
+decision that makes that slower is the wrong decision, however good the
+engineering behind it.
 
-## دو نیازی که این مخزن باید برآورده کند
+## Two needs this repository must meet
 
-هر دو، نه یکی. مخزنی که فقط یکی را دارد ناقص است.
+Both of them, not one. A repository that covers only one is unfinished.
 
-۱. **راهنمای استفاده از وب‌سرویس و متدهایش در همین زبان.** خواننده باید
-بفهمد هر متد کِی به‌درد می‌خورد، چه می‌گیرد، چه برمی‌گرداند، و کجا اشتباه
-می‌کند. این کار README و بلوک توضیح بالای هر نمونه است.
+1. **A guide to the web service and its methods, in this language.** The reader
+   has to learn when each method is useful, what it takes, what it returns and
+   where it goes wrong. That is the job of the README and of the doc block at
+   the top of every example.
 
-۲. **نمونه‌کد آمادهٔ استفادهٔ واقعی.** چیزی که کاربر بتواند در برنامهٔ خودش
-به کار ببرد، نه قطعه‌کدی که فقط برای نمایش کار می‌کند. یعنی مدیریت خطا،
-تایم‌اوت، خواندن کلید از محیط، و بخش «استفاده در پروژهٔ خودتان» در README.
+2. **Example code that is ready for real use.** Something the reader can drop
+   into their own program, not a snippet that only works on a slide. That means
+   error handling, timeouts, reading the key from the environment, and a
+   section in the README about using this in your own project.
 
-## نام برند
+## Persian text
 
-- شکل درست: **پیام رسان** با فاصله. نیم‌فاصله («پیام‌رسان») شکل اسم عام
-  برای انواع پیام‌رسان‌های اجتماعی است و با هویت برند تداخل دارد.
-- در متن فارسی، جایی که برند معرفی می‌شود، عبارت کامل **پنل پیامکی پیام
-  رسان** به کار برود. همین ابهام را برمی‌دارد.
-- هر README باید در پابرگ نشانی `payam-resan.com` را **نوشته و لینک‌شده**
-  داشته باشد، نه فقط یک لینک روی نام برند.
+Follow the wording, spelling and punctuation already in the repository. When
+you add a passage or rewrite one, match the surrounding text instead of
+bringing your own conventions to it. This covers the README, the comments
+inside the code, YAML values, and any string shown to a user.
 
-## دو زبان، دو فایل
+**The brand name takes a real space, not a ZWNJ:** `پیام رسان`. The joined
+form is the common noun for social messaging apps and collides with the brand.
 
-هر مخزن دو README دارد و هر دو باید هم‌گام بمانند:
+Where the brand is first introduced, use the full phrase
+**پنل پیامکی پیام رسان**. That removes the ambiguity.
 
-| فایل | زبان | جهت |
+Every README carries `payam-resan.com` in the footer, written out and linked,
+not merely a link sitting on the brand name.
+
+## Two languages, two files
+
+Every repository carries two READMEs and both stay in step:
+
+| File | Language | Direction |
 |---|---|---|
-| `README.md` | فارسی | راست‌به‌چپ |
-| `README.en.md` | انگلیسی | چپ‌به‌راست |
+| `README.md` | Persian | right to left |
+| `README.en.md` | English | left to right |
 
-نام فایل انگلیسی دقیقاً `README.en.md` است، با حروف بزرگ. گیت‌هاب فقط
-`README.md` را خودکار نمایش می‌دهد، پس بالای هر دو فایل یک خط سوییچ زبان
-می‌آید تا از هرکدام بتوان به دیگری رسید:
+The English file is named exactly `README.en.md`, in capitals. GitHub renders
+only `README.md` on its own, so both files open with a language switch line so
+that either one leads to the other:
 
 ```
 <b>فارسی</b> · <a href="README.en.md">English</a>
 ```
 
-**متن انگلیسی ترجمهٔ تحت‌اللفظی فارسی نیست.** همان مطلب، ولی نوشته‌شده برای
-خواننده‌ای که فارسی نمی‌داند و احتمالاً از بیرون ایران به مخزن رسیده. ساختار
-و بخش‌ها یکی می‌ماند تا هم‌گام نگه داشتنشان ساده باشد.
+**The English text is not a literal translation of the Persian.** Same
+material, written for a reader who does not know Persian and most likely
+arrived from outside Iran. The structure and the section order stay identical,
+which is what makes keeping them in step cheap.
 
-نسخهٔ انگلیسی به ظرف `<div dir="rtl">` نیازی ندارد.
+The English version needs no `<div dir="rtl">` wrapper.
 
-## جهت متن در README فارسی
+## Text direction in the Persian README
 
-گیت‌هاب خودش `dir="auto"` را روی عنوان، پاراگراف و فهرست می‌گذارد، ولی روی
-**جدول نمی‌گذارد** و ظرف `<article>` هم بدون جهت است. سه قاعده از همین
-درمی‌آید:
+GitHub applies `dir="auto"` to headings, paragraphs and lists, but **not to
+tables**, and its `<article>` wrapper carries no direction. Three rules follow.
 
-**۱. هر جدول را در ظرف راست‌به‌چپ بگذارید،** وگرنه ستون‌ها چپ‌به‌راست
-می‌مانند و ستون اول سمت چپ می‌افتد:
+**1. Wrap every table in a right-to-left container,** otherwise the columns
+stay left to right and the first column lands on the left:
 
 ```markdown
 <div dir="rtl">
@@ -66,70 +76,74 @@
 </div>
 ```
 
-**۲. بلوک کد هرگز داخل ظرف راست‌به‌چپ نرود.** کد راست‌چین می‌شود. ظرف را
-فقط دور جدول ببندید، نه دور بخش‌های بزرگ.
+**2. A code block never goes inside a right-to-left container.** The code ends
+up right aligned. Wrap the table only, never a whole section.
 
-**۳. پاراگراف فارسی نباید با نویسهٔ چپ‌به‌راست شروع شود.** `dir="auto"`
-جهت را از نخستین نویسهٔ جهت‌دار می‌گیرد، پس جمله‌ای که با `` `code` `` یا یک
-لینک انگلیسی شروع شود، کامل چپ‌چین رندر می‌شود. راه‌حل بازنویسی جمله است،
-نه افزودن markup:
+**3. A Persian paragraph must not open with a left-to-right character.**
+`dir="auto"` takes its direction from the first strong character, so a sentence
+that starts with `` `code` `` or an English link renders fully left aligned.
+The fix is to rewrite the sentence, not to add markup:
 
 ```
 ✗ `v3` در مسیر عمدی است تا …
 ✓ بخش `v3` در مسیر عمدی است تا …
 ```
 
-## منبع حقیقت
+## Source of truth
 
-امضای متدها، نام فیلدها و مقادیر کدها از مخزن `sms-webservice-spec` می‌آید.
-چیزی را از روی حافظه یا از روی مستندات قدیمی ننویسید؛ اگر spec و این مخزن
-اختلاف داشتند، spec درست است.
+Method signatures, field names and code values come from the
+`sms-webservice-spec` repository. Never write them from memory or from older
+documentation. Where the spec and this repository disagree, the spec is right.
 
-## قواعدی که نباید شکسته شوند
+## Rules that do not bend
 
-**کلید API در هیچ فایلی نوشته نمی‌شود.** نه در نمونه، نه در تست، نه
-ماسک‌شده. جایش `.env` است و `.env` در `.gitignore`. تنها جایی که یک مقدار
-نمونه دیده می‌شود `.env.example` است.
+**No API key is written into any file.** Not in an example, not in a test, not
+masked. It belongs in `.env`, and `.env` is in `.gitignore`. The only place a
+sample value appears is `.env.example`.
 
-**فقط `https`.** کلید در متدهای GET داخل نشانی می‌رود؛ روی `http` لخت روی
-شبکه می‌رود.
+**`https` only.** In the GET methods the key travels inside the URL, so plain
+`http` puts it on the wire in the clear.
 
-**متن پیامک یک بار url-encode می‌شود، نه دو بار.** `http_build_query` این
-کار را می‌کند. اگر پیش از آن `urlencode()` هم بزنید، گیرنده `%D8%A7` می‌بیند.
-این اشتباه در نسخهٔ قبلی این مخزن بود و در شش زبان تکرار شده بود.
+**The message text is url-encoded once, not twice.** `http_build_query` already
+does it. Calling `urlencode()` beforehand makes the recipient see `%D8%A7`.
+That bug was in the previous version of this repository and had been copied
+into six languages.
 
-**موفقیت از فیلد `Success` خوانده می‌شود، نه از کد HTTP.** سرویس همیشه
-`200` برمی‌گرداند، حتی وقتی کلید نامعتبر است.
+**Success is read from the `Success` field, never from the HTTP status.** The
+service answers `200` even when the key is invalid.
 
-**غلط‌های سرویس اصلاح نمی‌شوند.** فیلد فرستنده در `GetInbox` نامش `Form`
-است. اگر «درستش» کنید، کد با پاسخ واقعی نمی‌خواند.
+**The service's own mistakes are not corrected.** The sender field in
+`GetInbox` is spelled `Form`. Fix it and the code stops matching the real
+response.
 
-## ساختار
+## Layout
 
-| مسیر | چیست |
+| Path | What it holds |
 |---|---|
-| `examples/v3/` | یک فایل به‌ازای هر عملیات سرویس |
-| `utils/` | لایهٔ cURL و جدول کدها، تا در هر نمونه تکرار نشوند |
-| `config/` | خواندن پیکربندی از محیط |
+| `examples/v3/` | one file per service operation |
+| `utils/` | the cURL layer and the code tables, so no example repeats them |
+| `config/` | reading configuration from the environment |
 
-`v3` در مسیر عمدی است. نسخهٔ دیگر یعنی `examples/v<n>/` تازه، بدون دست زدن
-به پوشهٔ موجود.
+The `v3` in the path is deliberate. A new version means a new
+`examples/v<n>/`, with the existing folder left alone.
 
-## سبک نمونه‌ها
+## Style of the examples
 
-- هر فایل با یک بلوک توضیح شروع می‌شود که می‌گوید **کِی** این متد به‌درد
-  می‌خورد و چه جایگزینی دارد، نه فقط پارامترها را فهرست کند.
-- هر فایل مستقل اجرا می‌شود: `php examples/v3/send.php`.
-- خطاها بررسی می‌شوند. نمونه‌ای که پاسخ را نادیده بگیرد چیز غلطی یاد می‌دهد.
-- توضیحات فارسی، نام فیلدها انگلیسی و عیناً مثل سرویس.
+- Every file opens with a doc block saying **when** the method is useful and
+  what the alternative is, rather than listing parameters.
+- Every file runs on its own: `php examples/v3/send.php`.
+- Errors are checked. An example that ignores the response teaches the wrong
+  thing.
+- Comments in Persian, field names in English and spelled exactly as the
+  service spells them.
 
-## پیش از هر کامیت
+## Before every commit
 
 ```bash
 for f in utils/*.php examples/v3/*.php; do php -l "$f"; done
 ```
 
-## گیت
+## Git
 
-پیام معنایی `type(scope): subject`، بدون بدنهٔ توضیحی، بدون هیچ اشاره‌ای به
-ابزار یا دستیار. بدون تأیید صریح کامیت نکنید.
+Semantic messages, `type(scope): subject`, with no explanatory body and no
+mention of any tool or assistant. Do not commit without explicit approval.
