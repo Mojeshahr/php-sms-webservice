@@ -14,6 +14,7 @@ require_once __DIR__ . '/../../utils/client.php';
 
 $config = pr_config();
 
+// docs:start
 $response = pr_post('SendTokenMulti', [
     'ApiKey'      => $config['api_key'],
     'TemplateKey' => 'YOUR-TEMPLATE-KEY',
@@ -32,3 +33,4 @@ $response = pr_post('SendTokenMulti', [
 ]);
 
 pr_show($response);
+// docs:end

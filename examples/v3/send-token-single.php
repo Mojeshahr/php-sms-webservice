@@ -19,6 +19,7 @@ require_once __DIR__ . '/../../utils/client.php';
 
 $config = pr_config();
 
+// docs:start
 $response = pr_post('SendTokenSingle', [
     'ApiKey'      => $config['api_key'],
     'TemplateKey' => 'YOUR-TEMPLATE-KEY',
@@ -40,3 +41,4 @@ foreach ($response['Result'] as $message) {
     echo "خط فرستنده: {$message['Sender']}\n";
     echo "متن نهایی: {$message['FinalText']}\n";
 }
+// docs:end

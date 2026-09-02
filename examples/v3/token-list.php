@@ -14,6 +14,7 @@ require_once __DIR__ . '/../../utils/codes.php';
 
 $config = pr_config();
 
+// docs:start
 $response = pr_post('TokenList', [
     'ApiKey' => $config['api_key'],
 ]);
@@ -31,3 +32,4 @@ foreach ($response['Result'] as $template) {
     echo "متن: {$template['TextTemplate']}\n";
     echo str_repeat('-', 40) . "\n";
 }
+// docs:end

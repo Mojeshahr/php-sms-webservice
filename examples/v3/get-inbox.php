@@ -17,6 +17,7 @@ require_once __DIR__ . '/../../utils/client.php';
 
 $config = pr_config();
 
+// docs:start
 $response = pr_post('GetInbox', [
     'ApiKey' => $config['api_key'],
 ]);
@@ -35,3 +36,4 @@ foreach ($response['Result'] as $message) {
     echo "از {$message['Form']} به {$message['To']} در {$message['Time']}\n";
     echo "  {$message['Text']}\n";
 }
+// docs:end

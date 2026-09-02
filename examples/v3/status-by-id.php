@@ -28,6 +28,7 @@ const MEANING = [
 
 $config = pr_config();
 
+// docs:start
 $response = pr_post('StatusById', [
     'ApiKey' => $config['api_key'],
     'Ids'    => [123456789, 123456790],
@@ -46,3 +47,4 @@ foreach ($response['Result'] as $item) {
     echo "شناسه {$item['Id']}: " . pr_status_label($code) . "\n";
     echo '  ' . MEANING[pr_status_disposition($code)] . "\n";
 }
+// docs:end

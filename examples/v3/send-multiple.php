@@ -14,6 +14,7 @@ require_once __DIR__ . '/../../utils/client.php';
 
 $config = pr_config();
 
+// docs:start
 $sender = (int) $config['sender'];
 
 $response = pr_post('SendMultiple', [
@@ -35,3 +36,4 @@ $response = pr_post('SendMultiple', [
 ]);
 
 pr_show($response);
+// docs:end

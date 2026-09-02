@@ -21,6 +21,7 @@ require_once __DIR__ . '/../../utils/codes.php';
 
 $config = pr_config();
 
+// docs:start
 $response = pr_post('StatusByUserTraceId', [
     'ApiKey'       => $config['api_key'],
     'UserTraceIds' => [1001, 1002],
@@ -39,3 +40,4 @@ foreach ($response['Result'] as $item) {
     // فقط وضعیت pending ارزش استعلام دوباره دارد.
     echo pr_status_is_pending($code) ? "  ← دوباره استعلام بگیرید\n" : "\n";
 }
+// docs:end

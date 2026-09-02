@@ -14,6 +14,7 @@ require_once __DIR__ . '/../../utils/client.php';
 
 $config = pr_config();
 
+// docs:start
 $response = pr_post('AccountInfo', [
     'ApiKey' => $config['api_key'],
 ]);
@@ -30,3 +31,4 @@ echo "خطوط فعال:\n";
 foreach ($account['AvailableSenders'] as $sender) {
     echo "  - $sender\n";
 }
+// docs:end

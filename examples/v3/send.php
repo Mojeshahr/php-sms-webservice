@@ -15,6 +15,7 @@ require_once __DIR__ . '/../../utils/client.php';
 
 $config = pr_config();
 
+// docs:start
 $response = pr_get('Send', [
     'ApiKey' => $config['api_key'],
     'Sender' => $config['sender'],
@@ -29,3 +30,4 @@ $response = pr_get('Send', [
 ]);
 
 pr_show($response);
+// docs:end
