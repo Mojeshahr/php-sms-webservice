@@ -89,45 +89,23 @@ of the URL and accepts your own tracking id for every recipient.
 
 ## Using this in your own project
 
-This is not a Composer package and is not meant to be one. You have three
-options.
+This is not a Composer package. You have three options.
 
-### 1. Copy the two folders
+### 1. Copy the example
 
-The simplest route for a plain PHP project:
+Every example is deliberately free of any dependency on this repository, so
+copying the file into your project is enough. Define two environment variables
+and it runs:
 
 ```bash
-cp -r config utils /path/to/your-project/lib/payam-resan/
+export PAYAM_RESAN_API_KEY='123456-XXXXXXXXXXXXXXX'
+export PAYAM_RESAN_SENDER='30004040'
 ```
-
-Then, wherever you need it:
-
-```php
-require_once __DIR__ . '/lib/payam-resan/utils/client.php';
-
-$config = pr_config();
-
-$response = pr_post('SendBulk', [
-    'ApiKey' => $config['api_key'],
-    'Sender' => (int) $config['sender'],
-    'Text'   => 'Your verification code is 123456',
-    'Recipients' => [
-        ['Destination' => 9121112222, 'UserTraceId' => $order->id],
-    ],
-]);
-
-if (! $response['Success']) {
-    throw new RuntimeException($response['Error']);
-}
-```
-
-`pr_config()` reads `.env` itself, so you only need `.env` next to the copied
-folder, or the variables defined in the server environment.
 
 ### 2. Take only the request shape
 
-If your project already has an HTTP client, leave `utils/` behind and copy just
-the request body and the response check:
+If your project already has an HTTP client, leave the example's cURL layer
+behind and copy just the request body and the response check:
 
 ```php
 use GuzzleHttp\Client;
@@ -199,9 +177,7 @@ Leave a few minutes between sending and asking.
 
 | Path | What it is |
 |---|---|
-| `examples/v3/` | One example per service operation |
-| `utils/` | The cURL layer and the code tables, so they are not repeated in every example |
-| `config/` | Reads configuration from the environment |
+| `examples/v3/` | One self-contained example per service operation |
 | `.env.example` | A template for the environment variables |
 
 The `v3` in the path is deliberate, so later versions of the service can sit

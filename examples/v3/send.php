@@ -1,33 +1,53 @@
 <?php
 /**
- * Send - ارسال یک متن به یک یا چند شماره با GET.
+ * Send - ساده‌ترین ارسال، یک متن به چند شماره با یک درخواست GET.
  *
- * ساده‌ترین متد ارسال. برای محیط عملیاتی send-bulk.php ترجیح دارد، چون
- * اینجا کلید API داخل نشانی می‌نشیند و در لاگ وب‌سرور، تاریخچه مرورگر و
- * هدر Referer ثبت می‌شود.
+ * برای آزمایش سریع خوب است. در محیط عملیاتی SendBulk را بردارید: کلید
+ * را از نشانی بیرون می‌برد و برای هر گیرنده شناسه پی‌گیری می‌پذیرد.
  *
- *   php examples/v3/send.php
+ * جز افزونه cURL که در هر نصب PHP هست، به چیزی وابسته نیست. کپی کنید و
+ * در پروژه خودتان اجرا کنید.
+ *
+ *   PAYAM_RESAN_API_KEY=... PAYAM_RESAN_SENDER=... php examples/v3/send.php
  */
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../utils/client.php';
-
-$config = pr_config();
-
 // docs:start
-$response = pr_get('Send', [
-    'ApiKey' => $config['api_key'],
-    'Sender' => $config['sender'],
+$query = [
+    'ApiKey' => getenv('PAYAM_RESAN_API_KEY'),
+    'Sender' => (int) getenv('PAYAM_RESAN_SENDER'),
+    'Text'   => 'کد تأیید شما ۱۲۳۴۵۶ است',
 
-    // متن را خام بدهید. http_build_query داخل pr_get دقیقاً یک بار
-    // url-encode می‌کند. اگر اینجا هم urlencode() بزنید، گیرنده
-    // «%D8%A7%D8%B3%D8%AA» می‌بیند نه متن فارسی.
-    'Text' => 'کد تأیید شما ۱۲۳۴۵۶ است',
-
-    // رشته جداشده با کاما، نه آرایه. بدون صفر ابتدایی. حداکثر ۹۹ شماره.
+    // رشته جداشده با کاما، نه آرایه. حداکثر ۹۹ شماره.
     'Recipients' => '9121112222,9121113333',
+];
+
+// http_build_query دقیقاً یک بار url-encode می‌کند. اگر متن را خودتان
+// هم پیش از این encode کنید، پیامک با نویسه‌های %D8 به گوشی می‌رسد.
+$url = 'https://api.sms-webservice.com/api/V3/Send?' . http_build_query($query);
+
+$curl = curl_init($url);
+curl_setopt_array($curl, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT        => 30,
 ]);
 
-pr_show($response);
+$raw = curl_exec($curl);
+if ($raw === false) {
+    exit('خطای شبکه: ' . curl_error($curl) . "\n");
+}
+curl_close($curl);
+
+$response = json_decode($raw, true);
+
+// سرویس همیشه HTTP 200 می‌دهد، حتی وقتی درخواست شکست خورده. موفقیت را
+// فقط از فیلد Success بخوانید.
+if (empty($response['Success'])) {
+    exit("ناموفق. کد {$response['ErrorCode']}: {$response['Error']}\n");
+}
+
+foreach ($response['Result'] as $message) {
+    echo "شناسه {$message['Id']}\n";
+}
 // docs:end

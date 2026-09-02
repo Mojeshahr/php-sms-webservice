@@ -120,9 +120,7 @@ response.
 
 | Path | What it holds |
 |---|---|
-| `examples/v3/` | one file per service operation |
-| `utils/` | the cURL layer and the code tables, so no example repeats them |
-| `config/` | reading configuration from the environment |
+| `examples/v3/` | one self-contained file per service operation |
 
 The `v3` in the path is deliberate. A new version means a new
 `examples/v<n>/`, with the existing folder left alone.
@@ -131,7 +129,9 @@ The `v3` in the path is deliberate. A new version means a new
 
 - Every file opens with a doc block saying **when** the method is useful and
   what the alternative is, rather than listing parameters.
-- Every file runs on its own: `php examples/v3/send.php`.
+- Every file runs on its own and depends on nothing in this repository.
+  A reader copies it into their project and it works, which is why the
+  cURL call is written out in each one instead of being factored away.
 - Errors are checked. An example that ignores the response teaches the wrong
   thing.
 - Comments in Persian, field names in English and spelled exactly as the
@@ -140,7 +140,7 @@ The `v3` in the path is deliberate. A new version means a new
 ## Before every commit
 
 ```bash
-for f in utils/*.php examples/v3/*.php; do php -l "$f"; done
+for f in examples/v3/*.php; do php -l "$f"; done
 ```
 
 ## Git

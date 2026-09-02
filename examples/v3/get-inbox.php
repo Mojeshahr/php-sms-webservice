@@ -1,39 +1,50 @@
 <?php
 /**
- * GetInbox - پیامک‌های رسیده به خطوط حساب.
+ * GetInbox - پیامک‌هایی که کاربران به خطوط حساب شما فرستاده‌اند.
  *
  * این یک استعلام است، نه webhook: سامانه چیزی به سرور شما نمی‌فرستد و
- * باید خودتان دوره‌ای فراخوانی کنید.
+ * باید خودتان دوره‌ای صدایش بزنید. فاصله را کمتر از چند دقیقه نگذارید،
+ * وگرنه به خطای ۲۰ می‌خورید.
  *
- * ⚠ نام فیلد فرستنده در پاسخ Form است، نه From. این غلط املایی در خود
- * سرویس است؛ دنبال From نگردید.
+ * جز افزونه cURL که در هر نصب PHP هست، به چیزی وابسته نیست. کپی کنید و
+ * در پروژه خودتان اجرا کنید.
  *
- *   php examples/v3/get-inbox.php
+ *   PAYAM_RESAN_API_KEY=... php examples/v3/get-inbox.php
  */
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../utils/client.php';
-
-$config = pr_config();
-
 // docs:start
-$response = pr_post('GetInbox', [
-    'ApiKey' => $config['api_key'],
+$payload = ['ApiKey' => getenv('PAYAM_RESAN_API_KEY')];
+
+$curl = curl_init('https://api.sms-webservice.com/api/V3/GetInbox');
+curl_setopt_array($curl, [
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => json_encode($payload, JSON_UNESCAPED_UNICODE),
+    CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT        => 30,
 ]);
 
+$raw = curl_exec($curl);
+if ($raw === false) {
+    exit('خطای شبکه: ' . curl_error($curl) . "\n");
+}
+curl_close($curl);
+
+$response = json_decode($raw, true);
+
+// سرویس همیشه HTTP 200 می‌دهد، حتی وقتی درخواست شکست خورده. موفقیت را
+// فقط از فیلد Success بخوانید.
 if (empty($response['Success'])) {
-    pr_show($response);
-    exit(1);
+    exit("ناموفق. کد {$response['ErrorCode']}: {$response['Error']}\n");
 }
 
-if ($response['Result'] === []) {
-    echo "پیامک تازه‌ای نرسیده است.\n";
-    exit(0);
-}
+foreach ($response['Result'] as $sms) {
+    // نام فیلد فرستنده در خود سرویس Form است، نه From. دنبال From نگردید.
+    echo "{$sms['Time']}  {$sms['Form']} -> {$sms['To']}: {$sms['Text']}\n";
 
-foreach ($response['Result'] as $message) {
-    echo "از {$message['Form']} به {$message['To']} در {$message['Time']}\n";
-    echo "  {$message['Text']}\n";
+    // هر فراخوانی ممکن است پیام‌های قبلی را دوباره بدهد. Id را ذخیره
+    // کنید تا یک پیام دو بار پردازش نشود.
 }
 // docs:end
