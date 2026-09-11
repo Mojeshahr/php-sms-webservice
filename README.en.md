@@ -187,14 +187,17 @@ beside this one.
 
 ## Documentation and support
 
-- [Payam Resan documentation](https://docs.payam-resan.com)
-- [Web service Swagger](https://api.sms-webservice.com/swagger/ui/index)
-- Question or bug? [Open an issue](https://github.com/Mojeshahr/php-sms-webservice/issues)
-  or contact [support](https://payam-resan.com).
+The full guide to the web service is at
+[docs.payam-resan.com](https://docs.payam-resan.com), and the machine-readable
+OpenAPI description is in
+[sms-webservice-spec](https://github.com/Mojeshahr/sms-webservice-spec).
+
+Question or bug? [Open an issue](https://github.com/Mojeshahr/php-sms-webservice/issues)
+or contact [support](https://payam-resan.com).
 
 ## License
 
-[MIT](LICENSE)
+Released under the MIT license. Full text in [`LICENSE`](LICENSE).
 
 <br>
 <div align="center">

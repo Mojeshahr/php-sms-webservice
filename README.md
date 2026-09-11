@@ -199,14 +199,16 @@ if (! $body['Success']) {
 
 ## مستندات و پشتیبانی
 
-- [مستندات پیام رسان](https://docs.payam-resan.com)
-- [مرجع Swagger وب‌سرویس](https://api.sms-webservice.com/swagger/ui/index)
-- سؤال یا خطا؟ [issue باز کنید](https://github.com/Mojeshahr/php-sms-webservice/issues)
-  یا با [پشتیبانی](https://payam-resan.com) تماس بگیرید.
+راهنمای کامل وب‌سرویس در [docs.payam-resan.com](https://docs.payam-resan.com)
+است. توصیف ماشین‌خوان OpenAPI هم در
+[sms-webservice-spec](https://github.com/Mojeshahr/sms-webservice-spec).
+
+سؤال یا خطایی هست؟ [issue باز کنید](https://github.com/Mojeshahr/php-sms-webservice/issues)
+یا با [پشتیبانی](https://payam-resan.com) تماس بگیرید.
 
 ## مجوز
 
-[MIT](LICENSE)
+منتشرشده با مجوز MIT. متن کامل در [`LICENSE`](LICENSE).
 
 <br>
 <div align="center">
