@@ -38,6 +38,15 @@ PAYAM_RESAN_API_KEY=123456-XXXXXXXXXXXXXXX
 PAYAM_RESAN_SENDER=30004040
 ```
 
+نمونه‌ها فایل `.env` را خودکار نمی‌خوانند؛ مقدارها را پیش از اجرا در همان
+ترمینال وارد محیط کنید:
+
+```bash
+set -a
+. ./.env
+set +a
+```
+
 اول اتصال را بیازمایید. این متد چیزی ارسال نمی‌کند و اعتباری مصرف نمی‌کند:
 
 ```bash
@@ -64,6 +73,7 @@ php examples/v3/send.php
 | متن یکسان به چند نفر، با پی‌گیری وضعیت | `SendBulk` |
 | متن متفاوت برای هر گیرنده | `SendMultiple` |
 | رمز یک‌بارمصرف یا هر قالب تأییدشده | `SendTokenSingle` |
+| ارسال قالب با مقادیر جداشده با نقطه‌ویرگول | `SendTokenSingleConcatParam` |
 | یک قالب برای چند نفر با مقادیر متفاوت | `SendTokenMulti` |
 
 </div>
@@ -85,6 +95,8 @@ php examples/v3/send.php
 | [send-multiple.php](examples/v3/send-multiple.php) | `SendMultiple` | متن متفاوت برای هر گیرنده |
 | [send-token-single.php](examples/v3/send-token-single.php) | `SendTokenSingle` | ارسال قالب به یک شماره |
 | [send-token-single-get.php](examples/v3/send-token-single-get.php) | `SendTokenSingle` | همان، با GET |
+| [send-token-single-concat-param.php](examples/v3/send-token-single-concat-param.php) | `SendTokenSingleConcatParam` | ارسال قالب با پارامترها در یک رشته |
+| [send-token-single-concat-param-get.php](examples/v3/send-token-single-concat-param-get.php) | `SendTokenSingleConcatParam` | همان، با GET |
 | [send-token-multi.php](examples/v3/send-token-multi.php) | `SendTokenMulti` | یک قالب، چند گیرنده |
 | [token-list.php](examples/v3/token-list.php) | `TokenList` | فهرست قالب‌ها و وضعیت تأییدشان |
 | [status-by-id.php](examples/v3/status-by-id.php) | `StatusById` | وضعیت با شناسه سامانه |
@@ -95,6 +107,10 @@ php examples/v3/send.php
 
 هر نمونه کامل و مستقل است و جز افزونه cURL خود PHP به چیزی وابسته نیست. همین
 فایل‌ها در [مستندات](https://docs.payam-resan.com) هم دیده می‌شوند.
+
+در متد `SendTokenSingleConcatParam` به‌جای فیلدهای `p1` تا `p10`، مقدارهای قالب
+به ترتیب جای‌گاه در یک رشته `p` با جداکننده `;` فرستاده می‌شوند. نمونه‌های این متد
+برای قالب `postcode`، مقدار `BARCODE-AAA;شیراز` را برای جای‌گاه‌های `{1}` و `{2}` می‌فرستند.
 
 ---
 

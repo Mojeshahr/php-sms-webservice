@@ -38,6 +38,15 @@ PAYAM_RESAN_API_KEY=123456-XXXXXXXXXXXXXXX
 PAYAM_RESAN_SENDER=30004040
 ```
 
+The examples do not load `.env` automatically. Export its values in the same
+terminal before running an example:
+
+```bash
+set -a
+. ./.env
+set +a
+```
+
 Test the connection first. This method sends nothing and costs no credit:
 
 ```bash
@@ -62,6 +71,7 @@ php examples/v3/send.php
 | send the same text to several people and track each one | `SendBulk` |
 | send a different text to each recipient | `SendMultiple` |
 | send a one-time password or any approved template | `SendTokenSingle` |
+| send a template with semicolon-separated values | `SendTokenSingleConcatParam` |
 | send one template to several people with different values | `SendTokenMulti` |
 
 For production sending, `SendBulk` is the best choice: it keeps the API key out
@@ -79,11 +89,18 @@ of the URL and accepts your own tracking id for every recipient.
 | [send-multiple.php](examples/v3/send-multiple.php) | `SendMultiple` | A different text per recipient |
 | [send-token-single.php](examples/v3/send-token-single.php) | `SendTokenSingle` | Send a template to one number |
 | [send-token-single-get.php](examples/v3/send-token-single-get.php) | `SendTokenSingle` | The same, over GET |
+| [send-token-single-concat-param.php](examples/v3/send-token-single-concat-param.php) | `SendTokenSingleConcatParam` | Send a template with its parameters in one string |
+| [send-token-single-concat-param-get.php](examples/v3/send-token-single-concat-param-get.php) | `SendTokenSingleConcatParam` | The same, over GET |
 | [send-token-multi.php](examples/v3/send-token-multi.php) | `SendTokenMulti` | One template, many recipients |
 | [token-list.php](examples/v3/token-list.php) | `TokenList` | Your templates and their approval status |
 | [status-by-id.php](examples/v3/status-by-id.php) | `StatusById` | Delivery status by the service's id |
 | [status-by-user-trace-id.php](examples/v3/status-by-user-trace-id.php) | `StatusByUserTraceId` | Delivery status by your own id |
 | [get-inbox.php](examples/v3/get-inbox.php) | `GetInbox` | Messages people sent to your lines |
+
+`SendTokenSingleConcatParam` sends the template values in one `p` string,
+separated by `;` in placeholder order, instead of individual `p1` to `p10`
+fields. The examples use `BARCODE-AAA;شیراز` for placeholders `{1}` and `{2}`
+of the `postcode` template.
 
 ---
 
