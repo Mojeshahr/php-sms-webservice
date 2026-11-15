@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SendTokenMulti - یک قالب، چند گیرنده، مقادیر متفاوت.
  *
@@ -10,11 +11,15 @@
  * در پروژه خودتان اجرا کنید.
  *
  *   PAYAM_RESAN_API_KEY=... php examples/v3/send-token-multi.php
+ *
+ * @package PayamResan_Examples
  */
 
 declare(strict_types=1);
 
 // docs:start
+$baseUrl = 'https://www.payam-resan.com/api/V3';
+
 // قالب نمونه: «مرسوله شما از {2} تحویل پست شد. بارکد مرسوله پستی: {1}»
 $payload = [
     'ApiKey'      => getenv('PAYAM_RESAN_API_KEY'),
@@ -33,14 +38,17 @@ $payload = [
     ],
 ];
 
-$curl = curl_init('https://api.sms-webservice.com/api/V3/SendTokenMulti');
-curl_setopt_array($curl, [
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => json_encode($payload, JSON_UNESCAPED_UNICODE),
-    CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 30,
-]);
+$curl = curl_init($baseUrl . '/SendTokenMulti');
+curl_setopt_array(
+    $curl,
+    [
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => json_encode($payload, JSON_UNESCAPED_UNICODE),
+        CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 30,
+    ]
+);
 
 $raw = curl_exec($curl);
 if ($raw === false) {

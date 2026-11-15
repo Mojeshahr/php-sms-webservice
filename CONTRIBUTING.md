@@ -137,12 +137,24 @@ The `v3` in the path is deliberate. A new version means a new
   thing.
 - Comments in Persian, field names in English and spelled exactly as the
   service spells them.
+- PHPCS uses `phpcs.xml.dist`: PSR-12 with short arrays (`[]`). These are
+  standalone PHP scripts; WordPress standards do not apply.
+- Keep the extraction markers exactly `// docs:start` and `// docs:end`.
+- Inside those markers, hardcode `$baseUrl = 'https://www.payam-resan.com/api/V3'`
+  in each example, then append `/<Method>`. Keep GET parameters in
+  `http_build_query()` and omit the trailing slash from `$baseUrl`.
 
 ## Before every commit
 
 ```bash
+phpcs
 for f in examples/v3/*.php; do php -l "$f"; done
 ```
+
+Run PHPCS from the repository root so it discovers `phpcs.xml.dist`. Configure
+editor integrations to use that ruleset too; an explicit `WordPress` setting
+overrides automatic discovery. For the PHP Sniffer extension, use
+`"phpSniffer.standard": ""` when this repository is opened as a workspace.
 
 ## Git
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SendTokenSingle با GET - همان ارسال قالب، با ورودی در نشانی.
  *
@@ -10,11 +11,15 @@
  * در پروژه خودتان اجرا کنید.
  *
  *   PAYAM_RESAN_API_KEY=... php examples/v3/send-token-single-get.php
+ * 
+ * @package PayamResan_Examples
  */
 
 declare(strict_types=1);
 
 // docs:start
+$baseUrl = 'https://www.payam-resan.com/api/V3';
+
 $query = [
     'ApiKey'      => getenv('PAYAM_RESAN_API_KEY'),
     'TemplateKey' => 'verifycode',
@@ -22,13 +27,16 @@ $query = [
     'p1'          => '123456',
 ];
 
-$url = 'https://api.sms-webservice.com/api/V3/SendTokenSingle?' . http_build_query($query);
+$url = $baseUrl . '/SendTokenSingle?' . http_build_query($query);
 
 $curl = curl_init($url);
-curl_setopt_array($curl, [
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 30,
-]);
+curl_setopt_array(
+    $curl,
+    [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 30,
+    ]
+);
 
 $raw = curl_exec($curl);
 if ($raw === false) {

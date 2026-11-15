@@ -38,6 +38,11 @@ PAYAM_RESAN_API_KEY=123456-XXXXXXXXXXXXXXX
 PAYAM_RESAN_SENDER=30004040
 ```
 
+نشانی پایه در هر نمونه مستقیماً با مقدار `$baseUrl` برابر
+`https://www.payam-resan.com/api/V3` نوشته شده است. برای آزمون بدون ارسال
+پیامک و مصرف اعتبار، همین نشانی را در نمونه به
+`https://www.payam-resan.com/api/V3SandBox` تغییر دهید.
+
 نمونه‌ها فایل `.env` را خودکار نمی‌خوانند؛ مقدارها را پیش از اجرا در همان
 ترمینال وارد محیط کنید:
 
@@ -136,7 +141,7 @@ export PAYAM_RESAN_SENDER='30004040'
 ```php
 use GuzzleHttp\Client;
 
-$http = new Client(['base_uri' => 'https://api.sms-webservice.com/api/V3/']);
+$http = new Client(['base_uri' => 'https://www.payam-resan.com/api/V3/']);
 
 $response = $http->post('SendBulk', [
     'json' => [

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SendTokenSingleConcatParam - ارسال قالب با پارامترها در یک رشته.
  *
@@ -17,43 +18,45 @@
 declare(strict_types=1);
 
 // docs:start
-$payload = [
-	'ApiKey'      => getenv( 'PAYAM_RESAN_API_KEY' ),
-	'TemplateKey' => 'postcode',
-	'Destination' => 9121112222,
+$baseUrl = 'https://www.payam-resan.com/api/V3';
 
-	// قالب نمونه: «مرسوله شما از {2} تحویل پست شد. بارکد مرسوله پستی: {1}».
-	// مقدار اول برای {1} است و مقدار دوم برای {2}، نه ترتیب ظاهرشان در متن.
-	'p'           => 'BARCODE-AAA;شیراز',
+$payload = [
+    'ApiKey'      => getenv('PAYAM_RESAN_API_KEY'),
+    'TemplateKey' => 'postcode',
+    'Destination' => 9121112222,
+
+    // قالب نمونه: «مرسوله شما از {2} تحویل پست شد. بارکد مرسوله پستی: {1}».
+    // مقدار اول برای {1} است و مقدار دوم برای {2}، نه ترتیب ظاهرشان در متن.
+    'p'           => 'BARCODE-AAA;شیراز',
 ];
 
-$curl = curl_init( 'https://www.payam-resan.com/api/V3/SendTokenSingleConcatParam' );
+$curl = curl_init($baseUrl . '/SendTokenSingleConcatParam');
 curl_setopt_array(
-	$curl,
-	[
-		CURLOPT_POST           => true,
-		CURLOPT_POSTFIELDS     => json_encode( $payload, JSON_UNESCAPED_UNICODE ),
-		CURLOPT_HTTPHEADER     => [ 'Content-Type: application/json; charset=utf-8' ],
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_TIMEOUT        => 30,
-	]
+    $curl,
+    [
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => json_encode($payload, JSON_UNESCAPED_UNICODE),
+        CURLOPT_HTTPHEADER     => [ 'Content-Type: application/json; charset=utf-8' ],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 30,
+    ]
 );
 
-$raw = curl_exec( $curl );
-if ( false === $raw ) {
-	exit( 'خطای شبکه: ' . curl_error( $curl ) . "\n" );
+$raw = curl_exec($curl);
+if (false === $raw) {
+    exit('خطای شبکه: ' . curl_error($curl) . "\n");
 }
-unset( $curl );
+unset($curl);
 
-$response = json_decode( $raw, true );
+$response = json_decode($raw, true);
 
 // پاسخ HTTP 200 هم می‌تواند ناموفق باشد. موفقیت را از فیلد Success بخوانید.
-if ( empty( $response['Success'] ) ) {
-	exit( "ناموفق. کد {$response['ErrorCode']}: {$response['Error']}\n" );
+if (empty($response['Success'])) {
+    exit("ناموفق. کد {$response['ErrorCode']}: {$response['Error']}\n");
 }
 
-foreach ( $response['Result'] as $message ) {
-	echo "شناسه {$message['Id']} از خط {$message['Sender']}\n";
-	echo "متن نهایی: {$message['FinalText']}\n";
+foreach ($response['Result'] as $message) {
+    echo "شناسه {$message['Id']} از خط {$message['Sender']}\n";
+    echo "متن نهایی: {$message['FinalText']}\n";
 }
 // docs:end

@@ -38,6 +38,10 @@ PAYAM_RESAN_API_KEY=123456-XXXXXXXXXXXXXXX
 PAYAM_RESAN_SENDER=30004040
 ```
 
+Each example sets `$baseUrl` to `https://www.payam-resan.com/api/V3` directly.
+To test without sending SMS or spending credit, change that URL in the example
+to `https://www.payam-resan.com/api/V3SandBox`.
+
 The examples do not load `.env` automatically. Export its values in the same
 terminal before running an example:
 
@@ -127,7 +131,7 @@ behind and copy just the request body and the response check:
 ```php
 use GuzzleHttp\Client;
 
-$http = new Client(['base_uri' => 'https://api.sms-webservice.com/api/V3/']);
+$http = new Client(['base_uri' => 'https://www.payam-resan.com/api/V3/']);
 
 $response = $http->post('SendBulk', [
     'json' => [

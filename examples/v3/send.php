@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Send - ساده‌ترین ارسال، یک متن به چند شماره با یک درخواست GET.
  *
@@ -9,11 +10,15 @@
  * در پروژه خودتان اجرا کنید.
  *
  *   PAYAM_RESAN_API_KEY=... PAYAM_RESAN_SENDER=... php examples/v3/send.php
+ * 
+ * @package PayamResan_Examples
  */
 
 declare(strict_types=1);
 
 // docs:start
+$baseUrl = 'https://www.payam-resan.com/api/V3';
+
 $query = [
     'ApiKey' => getenv('PAYAM_RESAN_API_KEY'),
     'Sender' => (int) getenv('PAYAM_RESAN_SENDER'),
@@ -25,13 +30,16 @@ $query = [
 
 // http_build_query دقیقاً یک بار url-encode می‌کند. اگر متن را خودتان
 // هم پیش از این encode کنید، پیامک با نویسه‌های %D8 به گوشی می‌رسد.
-$url = 'https://api.sms-webservice.com/api/V3/Send?' . http_build_query($query);
+$url = $baseUrl . '/Send?' . http_build_query($query);
 
 $curl = curl_init($url);
-curl_setopt_array($curl, [
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 30,
-]);
+curl_setopt_array(
+    $curl,
+    [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 30,
+    ]
+);
 
 $raw = curl_exec($curl);
 if ($raw === false) {

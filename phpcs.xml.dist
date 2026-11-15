@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="Payam Resan PHP examples">
+    <description>PSR-12 for standalone PHP 7.4+ examples, using short arrays.</description>
+    <file>examples/v3</file>
+    <arg name="extensions" value="php"/>
+    <rule ref="PSR12"/>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+</ruleset>

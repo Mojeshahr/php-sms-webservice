@@ -1,4 +1,5 @@
 <?php
+
 /**
  * StatusById - وضعیت پیامک با شناسه‌هایی که متد ارسال برگردانده است.
  *
@@ -9,24 +10,31 @@
  * در پروژه خودتان اجرا کنید.
  *
  *   PAYAM_RESAN_API_KEY=... php examples/v3/status-by-id.php
+ * 
+ * @package PayamResan_Examples
  */
 
 declare(strict_types=1);
 
 // docs:start
+$baseUrl = 'https://www.payam-resan.com/api/V3';
+
 $payload = [
     'ApiKey' => getenv('PAYAM_RESAN_API_KEY'),
     'Ids'    => [9903211, 9903212],
 ];
 
-$curl = curl_init('https://api.sms-webservice.com/api/V3/StatusById');
-curl_setopt_array($curl, [
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => json_encode($payload, JSON_UNESCAPED_UNICODE),
-    CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 30,
-]);
+$curl = curl_init($baseUrl . '/StatusById');
+curl_setopt_array(
+    $curl,
+    [
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => json_encode($payload, JSON_UNESCAPED_UNICODE),
+        CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 30,
+    ]
+);
 
 $raw = curl_exec($curl);
 if ($raw === false) {

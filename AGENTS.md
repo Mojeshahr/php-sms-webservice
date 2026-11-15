@@ -1,7 +1,7 @@
 # Working with this repository
 
 You are looking at runnable PHP examples for the **Payam Resan** SMS web service
-(`api.sms-webservice.com`, API V3), an Iranian SMS provider. Someone is probably
+(`www.payam-resan.com/api/V3`), an Iranian SMS provider. Someone is probably
 asking you to add SMS to their project.
 
 Copy the example that matches the method, adapt it, and keep the rules below.
@@ -189,7 +189,7 @@ project already has Guzzle or similar, keep the payload and the response check
 and replace only the transport:
 
 ```php
-$http = new GuzzleHttp\Client(['base_uri' => 'https://api.sms-webservice.com/api/V3/']);
+$http = new GuzzleHttp\Client(['base_uri' => 'https://www.payam-resan.com/api/V3/']);
 $body = json_decode((string) $http->post('SendBulk', ['json' => $payload])->getBody(), true);
 ```
 
@@ -199,8 +199,11 @@ hands the key to anyone on the path.
 
 ## Testing without spending credit
 
-Replace `V3` with `V3SandBox` in the URL. No message is sent and no credit is
-spent. `TokenList` is not implemented there.
+Every example hardcodes `$baseUrl = 'https://www.payam-resan.com/api/V3'`.
+For sandbox testing, change it in the example to
+`https://www.payam-resan.com/api/V3SandBox`. Keep the version path and omit
+the trailing slash; the method path starts with `/`. No message is sent and
+no credit is spent in the sandbox; `TokenList` returns mock templates there.
 
 The sandbox is a simulator, not a mirror of the account: credit is always
 `1234567`, sender lines are invented, and **it accepts any key**. Success there

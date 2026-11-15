@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SendBulk - یک متن به چند گیرنده، هر کدام با شناسه پی‌گیری خودتان.
  *
@@ -10,11 +11,15 @@
  * در پروژه خودتان اجرا کنید.
  *
  *   PAYAM_RESAN_API_KEY=... PAYAM_RESAN_SENDER=... php examples/v3/send-bulk.php
+ *
+ * @package PayamResan_Examples
  */
 
 declare(strict_types=1);
 
 // docs:start
+$baseUrl = 'https://www.payam-resan.com/api/V3';
+
 $apiKey = getenv('PAYAM_RESAN_API_KEY');
 $sender = (int) getenv('PAYAM_RESAN_SENDER');
 
@@ -31,14 +36,17 @@ $payload = [
     ],
 ];
 
-$curl = curl_init('https://api.sms-webservice.com/api/V3/SendBulk');
-curl_setopt_array($curl, [
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => json_encode($payload, JSON_UNESCAPED_UNICODE),
-    CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 30,
-]);
+$curl = curl_init($baseUrl . '/SendBulk');
+curl_setopt_array(
+    $curl,
+    [
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => json_encode($payload, JSON_UNESCAPED_UNICODE),
+        CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 30,
+    ]
+);
 
 $raw = curl_exec($curl);
 if ($raw === false) {
