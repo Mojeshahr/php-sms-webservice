@@ -37,8 +37,7 @@ is why.
 
 ## Rule 1: `Success`, never the HTTP status
 
-The service answers `200` to everything, including a wrong key, an empty account
-and a malformed body. The examples never read `CURLINFO_RESPONSE_CODE`, on
+Normal V3 operations return `200`; the two `SendTokenSingleConcatParam` operations also document `429` and `default` responses. A non-2xx response may not have the normal envelope. The examples never read `CURLINFO_RESPONSE_CODE`, on
 purpose.
 
 ```php
@@ -116,6 +115,7 @@ the web server access log and the `Referer` header. Prefer `send-bulk.php` over
 |---|---|---|
 | one text to many people | `SendBulk` | `send-bulk.php` |
 | a different text per person | `SendMultiple` | `send-multiple.php` |
+| a template with semicolon parameters | `SendTokenSingleConcatParam` | `send-token-single-concat-param` example |
 | a one-time password or code | `SendTokenSingle` | `send-token-single.php` |
 | a template to many people | `SendTokenMulti` | `send-token-multi.php` |
 | delivery status | `StatusByUserTraceId` | `status-by-user-trace-id.php` |
@@ -175,7 +175,7 @@ field arriving as a JSON string does not silently fall through.
 
 ## Rule 12: `GetInbox` consumes what it returns
 
-The service hands over each incoming message **once**. Never call it from a web
+Each `GetInbox` call retrieves the current entire inbox and permanently removes the returned messages. A later call cannot retrieve them again. Never call it from a web
 request: every page load consumes unread messages permanently. It belongs in a
 cron job that writes straight to the database.
 
